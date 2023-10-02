@@ -27,6 +27,12 @@ def parseGcode(path):
         for line in g:
             #remove whitespace
             line = line.strip() 
+            # Do not send blank lines
+            if len(line) == 0:
+                continue
+            # remove inline comments
+            if ";" in line:
+                line = line.split(";")[0].strip
             # Don't send empty lines and comments. ";" is a comment in gcode.
             if len(line) == 0 or line.startswith(";"): 
                 continue
