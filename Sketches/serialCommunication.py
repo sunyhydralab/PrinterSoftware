@@ -6,7 +6,7 @@ import time
 def get3DPrinterList():
     # Get a list of all the connected serial ports.
     ports = serial.tools.list_ports.comports()
-    # Print out the list of ports.
+    # Make a list of the supported printers.
     for port in ports:
         # Save the port and description to list. With key value pairs of port and description.
         printerList = []
@@ -43,7 +43,7 @@ def parseGcode(path):
 def sendGcode(message):
     # Encode and send the message to the printer. 
     ser.write(f"{message}\n".encode('utf-8'))
-    # Sleep the printer to give it enough time to get the instuction. 
+    # Sleep the printer to give it enough time to get the instruction. 
     time.sleep(0.1)
     # Save and print out the response from the printer. We can use this for error handling and status updates.
     while True:
