@@ -13,10 +13,10 @@ class Job:
         self.priority = priority  # Priority of the job
         self.status = status # Status of the job
         
-    # Method to load G-code from a given file path
-    def loadGcode(self, path):
+    # Method to load G-code from a given file.
+    def loadGcode(self, file):
         lines = []
-        with open(path, "r") as g:
+        with open(file, "r") as g:
             for line in g:
                 line = line.strip()  # Remove whitespace
                 if len(line) == 0:  # Do not send blank lines
