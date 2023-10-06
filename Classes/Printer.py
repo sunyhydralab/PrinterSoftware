@@ -20,11 +20,11 @@ class Printer:
 
     # Method to reset the printer. Sends the printer to home and resets the extruder.
     def reset(self):
-        self.send_gcode("G28")
-        self.send_gcode("G92 E0")
+        self.sendGcode("G28")
+        self.sendGcode("G92 E0")
 
     # Method to send gcode commands to the printer.
-    def send_gcode(self, message):
+    def sendGcode(self, message):
         self.ser.write(f"{message}\n".encode('utf-8'))
         time.sleep(0.1)
         while True:
@@ -34,12 +34,12 @@ class Printer:
         print(f"Command: {message}, Received: {response}")
 
     # Method to print a job.
-    def print_job(self, job):
+    def printJob(self, job):
         for line in job.gcode_lines:
-            self.send_gcode(line)
+            self.sendGcode(line)
 
     # Method to get a list of all the connected serial ports.
-    def get_supported_printers():
+    def getSupportedPrinters():
         # Get a list of all the connected serial ports.
         ports = serial.tools.list_ports.comports()
         # Make a list of the supported printers.

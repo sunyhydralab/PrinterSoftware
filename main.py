@@ -10,7 +10,7 @@ import Classes.Printer as Printer
 if __name__ == '__main__':
 
     # Get the list of available printers. 
-    available_printers = Printer.get_supported_printers()
+    available_printers = Printer.getSupportedPrinters()
     # Assuming the first available printer is selected for demo purposes.  
     # This is where the queue would come in.
     
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         prusa_printer = Printer(selected_port)  # Create a Printer object.
         prusa_printer.connect()  # Connect to the printer.
         prusa_printer.reset()  # Reset the printer.
-        prusa_printer.print_job(test_job)  # Send the job to the printer.
+        prusa_printer.printJob(test_job)  # Send the job to the printer.
         prusa_printer.reset()  # Reset the printer.
         prusa_printer.disconnect()  # Disconnect from the printer.
     else:

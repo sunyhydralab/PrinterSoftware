@@ -14,7 +14,7 @@ class Job:
         self.status = status # Status of the job
         
     # Method to load G-code from a given file path
-    def load_gcode(self, path):
+    def loadGcode(self, path):
         lines = []
         with open(path, "r") as g:
             for line in g:
