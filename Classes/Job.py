@@ -8,7 +8,7 @@ class Job:
     def __init__(self, file, name, quantity, priority, status):
         self.file = file  # The G-code file
         self.name = name    # Name of the job
-        self.gcode_lines = self.load_gcode(file)  # List containing the G-code lines
+        self.gcode_lines = self.loadGcode(file)  # List containing the G-code lines
         self.quantity = quantity  # Quantity of the job
         self.priority = priority  # Priority of the job
         self.status = status # Status of the job

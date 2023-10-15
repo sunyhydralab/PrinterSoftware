@@ -2,12 +2,14 @@ import serial
 import serial.tools.list_ports
 import time
 
+
 # Class for each printer.
 class Printer:
     # Constructor for the Printer class
-    def __init__(self, serial_port):
+    def __init__(self, serial_port, filament=None):
         self.serial_port = serial_port
         self.ser = None
+        self.filament = None
 
     # Method to connect to the printer via serial port.
     def connect(self):
@@ -25,7 +27,7 @@ class Printer:
 
     # Method to send gcode commands to the printer.
     def sendGcode(self, message):
-        self.ser.write(f"{message}\n".encode('utf-8'))
+        self.ser.write(f"{message}\n".encode("utf-8"))
         time.sleep(0.1)
         while True:
             response = self.ser.readline().decode("utf-8").strip()
@@ -50,7 +52,7 @@ class Printer:
             supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
             # Check if the printer is supported and if true add it to the list.
             if port.description in supportedPrinters:
-                printerList.append(port)   
+                printerList.append(port)
             # Print out the list of supported printers.
             print(f"Port: {port.device}, Descp: {port.description}")
         # Return the list of supported printers.
