@@ -5,7 +5,8 @@ get the same random results everytime for quick verification.
 
 import random as r
 from Filament import Filament
-from Job import Job
+
+# from Job import Job
 import JobQueue
 import Printer
 import PriorityTable
@@ -13,6 +14,8 @@ import PriorityTable
 
 def main():
     r.seed(10)
+    filaments = createFilaments(10)
+    jobs = createJobs(25)
 
 
 def createFilaments(num, maxAmount=50, colors=["red", "blue"]):
@@ -30,8 +33,20 @@ def createFilaments(num, maxAmount=50, colors=["red", "blue"]):
     return out
 
 
-def createJobs(num):
-    pass
+def createJobs(num, colors=["red", "blue"]):
+    out = []
+
+    for i in range(num):
+        out.append(DummyJob(i, r.randint(2, 30), r.choice(colors)))
+
+    return out
+
+
+class DummyJob:
+    def __init__(self, name, size, color):
+        self.name = name
+        self.size = size
+        self.color = color
 
 
 main()
