@@ -1,4 +1,4 @@
-from Classes.Queue import *
+from Classes.Queue import Queue
 
 # import Classes.Job
 
@@ -31,4 +31,4 @@ class JobQueue:
         return self.__id
 
     def __repr__(self):
-        return f"q: {self.__queue}, "
+        return f"(id: {self.__id}, p: {self.__priority}, q: {str(self.__queue)})"

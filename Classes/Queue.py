@@ -15,4 +15,4 @@ class Queue:
         return self.__queue[0]
 
     def __repr__(self):
-        return self.__queue
+        return str(self.__queue)

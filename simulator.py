@@ -14,11 +14,13 @@ from Classes.PriorityTable import PriorityTable
 
 def main():
     r.seed(10)
-    filaments = createFilaments(10)
-    jobs = createJobs(25)
+    filaments = createFilaments(2)
+    jobs = createJobs(5)
+    queues = createQueues([1, 3, 5])
 
     print(filaments)
     print(jobs)
+    print(queues)
 
 
 def createFilaments(num, maxAmount=50, colors=["red", "blue"]):
