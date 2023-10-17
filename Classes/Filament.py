@@ -23,3 +23,6 @@ class Filament:
 
     def willBeEmpty(self, jobSize):
         return self._amountRemaining - jobSize <= 0
+
+    def __repr__(self):
+        return f"(c: {self._color}, r: {self._amountRemaining})"

@@ -1,5 +1,6 @@
-import Queue
-import Job
+from Classes.Queue import *
+
+# import Classes.Job
 
 
 class JobQueue:
@@ -28,3 +29,6 @@ class JobQueue:
 
     def getId(self):
         return self.__id
+
+    def __repr__(self):
+        return f"q: {self.__queue}, "

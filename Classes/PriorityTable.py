@@ -1,4 +1,4 @@
-import HashTable
+from Classes.HashTable import HashTable
 
 
 class PriorityTable:

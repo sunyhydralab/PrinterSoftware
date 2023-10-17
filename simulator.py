@@ -2,20 +2,23 @@
 Will create dummy printer objects with filaments, and dummy job queues, randomly, but using a seeding method so we can
 get the same random results everytime for quick verification.
 """
-
 import random as r
-from Filament import Filament
+from Classes.Filament import Filament
 
 # from Job import Job
-import JobQueue
-import Printer
-import PriorityTable
+from Classes.JobQueue import JobQueue
+
+# from Classes.Printer import Printer
+from Classes.PriorityTable import PriorityTable
 
 
 def main():
     r.seed(10)
     filaments = createFilaments(10)
     jobs = createJobs(25)
+
+    print(filaments)
+    print(jobs)
 
 
 def createFilaments(num, maxAmount=50, colors=["red", "blue"]):
@@ -42,11 +45,25 @@ def createJobs(num, colors=["red", "blue"]):
     return out
 
 
+def createQueues(prioritys):
+    out = []
+
+    id = 0
+    for item in prioritys:
+        out.append(JobQueue(id, item))
+        id += 1
+
+    return out
+
+
 class DummyJob:
     def __init__(self, name, size, color):
         self.name = name
         self.size = size
         self.color = color
+
+    def __repr__(self):
+        return f"(n: {self.name}, s: {self.size}, c: {self.color})"
 
 
 main()
