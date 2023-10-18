@@ -40,7 +40,8 @@ class Printer:
         for line in job.gcode_lines:
             self.sendGcode(line)
 
-    # Method to get a list of all the connected serial ports.
+    # Method to get a list of all the connected serial ports. Static Method that can be called without an instance.
+    @staticmethod
     def getSupportedPrinters():
         # Get a list of all the connected serial ports.
         ports = serial.tools.list_ports.comports()
