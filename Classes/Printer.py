@@ -1,6 +1,7 @@
 import serial
 import serial.tools.list_ports
 import time
+import Queue
 
 
 # Class for each printer.
@@ -10,6 +11,7 @@ class Printer:
         self.serial_port = serial_port
         self.ser = None
         self.filament = None
+        self.queue = Queue()
 
     # Method to connect to the printer via serial port.
     def connect(self):
