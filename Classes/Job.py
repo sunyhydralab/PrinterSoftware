@@ -1,5 +1,5 @@
 import serial
-import serial.tools.list_ports
+from serial.tools import list_ports
 import time
 
 

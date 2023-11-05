@@ -1,10 +1,15 @@
-# System imports
+# System  Damien0622
+
 import sys
+print(sys.version)
+print(sys.path)
 import os
 
+
+
 # Import the classes 
-import Classes.Job as Job
-import Classes.Printer as Printer
+from Classes.Job import Job
+from Classes.Printer import Printer
 
 
 if __name__ == '__main__':
@@ -15,7 +20,7 @@ if __name__ == '__main__':
     # This is where the queue would come in.
     
      # Create the Job. All this information will come from the front end database.
-    test_job = Job(file, name, quantity, priority)
+    test_job = Job("20mm_calibration.gcode", "test", 1, 1, 1)
 
     # This just selects the first printer in the list.  Replace this with the queue.
     selected_port = available_printers[0].device if available_printers else None

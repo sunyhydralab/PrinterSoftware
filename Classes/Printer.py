@@ -1,7 +1,7 @@
 import serial
-import serial.tools.list_ports
+from serial.tools import list_ports
 import time
-import Queue
+# import Queue
 
 
 # Class for each printer.
@@ -48,9 +48,9 @@ class Printer:
         # Get a list of all the connected serial ports.
         ports = serial.tools.list_ports.comports()
         # Make a list of the supported printers.
+        # Save the port and description to list. With key value pairs of port and description.
+        printerList = []
         for port in ports:
-            # Save the port and description to list. With key value pairs of port and description.
-            printerList = []
             # Keep a list of supported printers.
             supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
             # Check if the printer is supported and if true add it to the list.
