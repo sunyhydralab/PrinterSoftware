@@ -12,11 +12,12 @@ if __name__ == '__main__':
     available_printers = Printer.getSupportedPrinters(1)
     # Assuming the first available printer is selected for demo purposes.  
     # This is where the queue would come in.
-    print("Available printers: ", available_printers)
+    print(len(available_printers))
      # Create the Job. All this information will come from the front end database.
     test_job = Job("20mm_calibration.gcode", "test", 1, 1, 1)
 
     # This just selects the first printer in the list.  Replace this with the queue.
+
     selected_port = available_printers[0].device if available_printers else None
     print("Selected Port: ", selected_port)
     if selected_port:

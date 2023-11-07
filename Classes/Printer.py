@@ -50,7 +50,7 @@ class Printer:
         # Create 5 virtual printers
         for i in range(5):
             # Create a virutal printer
-            printer = VirtualPrinter(i)
+            printer = VirtualPrinter(f"Virtual{i}")
             # Add it to the list
             printerList.append(printer)
             # Start the printer thrad
