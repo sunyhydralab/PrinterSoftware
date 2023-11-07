@@ -8,6 +8,12 @@ class VirtualPrinter:
         self.name = name
         # Create a serial port of the virtual printer
         self.ser = serial.serial_for_url('loop://', timeout=1)
+        # Set the device to the name
+        self.device = f"Virtual{self.name}"
+
+    @property
+    def device(self):
+        return self.device
 
     def run(self):
         print(self.name, " is running")

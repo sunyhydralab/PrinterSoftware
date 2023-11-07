@@ -44,7 +44,7 @@ class Printer:
             self.sendGcode(line)
 
     @staticmethod
-    def createVirutalPrinter():
+    def createVirtualPrinter():
         #List of printers
         printerList = []
         # Create 5 virtual printers
@@ -54,7 +54,7 @@ class Printer:
             # Add it to the list
             printerList.append(printer)
             # Start the printer thrad
-            printer.start
+            printer.start()
         # Return the list of virutal printers
         return printerList
 
@@ -82,7 +82,7 @@ class Printer:
             return printerList
         elif(simulate == 1):
             # set printerList to the returned values from createVirutalPrinter
-            printerList = self.createVirtualPrinter()
+            printerList = Printer.createVirtualPrinter()
             return printerList
         else:
             print("Only pass 0 or 1. 0 for real printers. 1 for virutal printers")
