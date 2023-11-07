@@ -4,12 +4,13 @@ import threading
 class VirtualPrinter:
 
     # Constructor
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, id):
+        self._id = id
+        self.name = id
         # Create a serial port of the virtual printer
         self.ser = serial.serial_for_url('loop://', timeout=1)
         # Set the device to the name
-        self.device = f"Virtual{self.name}"
+        self.device = f"Virtual{self._id}"
 
     @property
     def device(self):
