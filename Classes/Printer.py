@@ -43,6 +43,21 @@ class Printer:
         for line in job.gcode_lines:
             self.sendGcode(line)
 
+    @staticmethod
+    def createVirutalPrinter():
+        #List of printers
+        printerList = []
+        # Create 5 virtual printers
+        for i in range(5):
+            # Create a virutal printer
+            printer = VirtualPrinter(i)
+            # Add it to the list
+            printerList.append(printer)
+            # Start the printer thrad
+            printer.start
+        # Return the list of virutal printers
+        return printerList
+
     # Method to get a list of all the connected serial ports. Static Method that can be called without an instance.
     # Pass: 0 for real connected printers or 1 for virtual printers.
     @staticmethod
@@ -66,25 +81,13 @@ class Printer:
             # Return the list of supported printers.
             return printerList
         elif(simulate == 1):
-            printerList = VirtualPrinter()
+            # set printerList to the returned values from createVirutalPrinter
+            printerList = self.createVirtualPrinter()
             return printerList
         else:
             print("Only pass 0 or 1. 0 for real printers. 1 for virutal printers")
     
-    @staticmethod
-    def virutalPrinter():
-        #List of printers
-        printerList = []
-        # Create 5 virtual printers
-        for i in range(5):
-            # Create a virutal printer
-            printer = VirtualPrinter(i)
-            # Add it to the list
-            printerList.append(printer)
-            # Start the printer thrad
-            printer.start
-        # Return the list of virutal printers
-        return printerList
+    
         
             
 

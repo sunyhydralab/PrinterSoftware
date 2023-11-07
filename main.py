@@ -9,7 +9,7 @@ from Classes.Printer import Printer
 if __name__ == '__main__':
 
     # Get the list of available printers. Pass 0 for a list of real connected printers.  Pass 1 for a list of 5 virtual printers.
-    available_printers = Printer.getSupportedPrinters(0)
+    available_printers = Printer.getSupportedPrinters(1)
     # Assuming the first available printer is selected for demo purposes.  
     # This is where the queue would come in.
     print("Available printers: ", available_printers)
