@@ -1,7 +1,8 @@
 import serial
 from serial.tools import list_ports
 import time
-# import Queue
+from Classes.Queue import Queue
+from Classes.VirtualPrinter import VirtualPrinter
 
 
 # Class for each printer.
@@ -43,20 +44,47 @@ class Printer:
             self.sendGcode(line)
 
     # Method to get a list of all the connected serial ports. Static Method that can be called without an instance.
+    # Pass: 0 for real connected printers or 1 for virtual printers.
     @staticmethod
-    def getSupportedPrinters():
-        # Get a list of all the connected serial ports.
-        ports = serial.tools.list_ports.comports()
+    def getSupportedPrinters(simulate):
+
         # Make a list of the supported printers.
         # Save the port and description to list. With key value pairs of port and description.
         printerList = []
-        for port in ports:
-            # Keep a list of supported printers.
-            supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
-            # Check if the printer is supported and if true add it to the list.
-            if port.description in supportedPrinters:
-                printerList.append(port)
-            # Print out the list of supported printers.
-            print(f"Port: {port.device}, Descp: {port.description}")
-        # Return the list of supported printers.
+
+        if(simulate == 0):
+            # Get a list of all the connected serial ports.
+            ports = serial.tools.list_ports.comports()
+            for port in ports:
+                # Keep a list of supported printers.
+                supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
+                # Check if the printer is supported and if true add it to the list.
+                if port.description in supportedPrinters:
+                    printerList.append(port)
+                # Print out the list of supported printers.
+                print(f"Port: {port.device}, Descp: {port.description}")
+            # Return the list of supported printers.
+            return printerList
+        elif(simulate == 1):
+            printerList = VirtualPrinter()
+            return printerList
+        else:
+            print("Only pass 0 or 1. 0 for real printers. 1 for virutal printers")
+    
+    @staticmethod
+    def virutalPrinter():
+        #List of printers
+        printerList = []
+        # Create 5 virtual printers
+        for i in range(5):
+            # Create a virutal printer
+            printer = VirtualPrinter(i)
+            # Add it to the list
+            printerList.append(printer)
+            # Start the printer thrad
+            printer.start
+        # Return the list of virutal printers
         return printerList
+        
+            
+
