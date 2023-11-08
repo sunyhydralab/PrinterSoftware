@@ -5,7 +5,7 @@ from main import master_ports
 class DescribedSerialPort:
     def __init__(self, port_name, description, baudrate=115200, timeout=1):
         self.port_name = port_name
-        self.description = "Original Prusa i3 MK3"
+        self.description = description
         self.serial = serial.Serial(port_name, baudrate=baudrate, timeout=timeout)
     
     def read_command(self):
@@ -32,6 +32,7 @@ def handle_master_port(port):
 
 master_threads = []
 for port_name, description in master_ports:
+    description = "Original Prusa i3 MK3"
     described_port = DescribedSerialPort(port_name, description)
     master_thread = threading.Thread(target=handle_master_port, args=(described_port,))
     master_thread.start()
