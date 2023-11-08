@@ -19,9 +19,12 @@ for i in {1..5}; do
     killall socat
 done
 """
+
+# *** I need to fix the master/slave ports.  I'm not sure how to do this.***
+# Create a list of the master and slave ports.  The master ports are the virtual printers.  The slave ports are the virtual serial ports.
 # Replace the port names with the virtual serial ports created by the above command.
-master_ports = ['/dev/pts/2', '/dev/pts/4', '/dev/pts/6', '/dev/pts/8', '/dev/pts/10']
-slave_ports = ['/dev/pts/3', '/dev/pts/5', '/dev/pts/7', '/dev/pts/9', '/dev/pts/11']
+master_ports = ['/dev/pts/8', '/dev/pts/9', '/dev/pts/10', '/dev/pts/11', '/dev/pts/12']
+slave_ports = ['/dev/pts/13', '/dev/pts/14', '/dev/pts/15', '/dev/pts/16', '/dev/pts/17']
 
 # Get the list of available printers. Pass 0 for a list of real connected printers.  Pass 1 for a list of 5 virtual printers.
 serial_printers = 1

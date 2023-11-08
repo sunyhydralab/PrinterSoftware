@@ -1,6 +1,6 @@
 import serial
 import threading
-from main import master_ports, slave_ports
+from main import master_ports
 
 class DescribedSerialPort:
     def __init__(self, port_name, description, baudrate=115200, timeout=1):
