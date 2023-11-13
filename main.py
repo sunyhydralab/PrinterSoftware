@@ -55,6 +55,8 @@ if __name__ == '__main__':
 #             print(f"Error with printer {printer.serial_port}: {e}")
 
 # if __name__ == '__main__':
+
+#     # Remove and set to passed variable from front end. 
 #     serial_printers = int(input("Enter 0 for real printers or 1 for virtual printers: "))
 
 #     if serial_printers == 0:
@@ -76,10 +78,10 @@ if __name__ == '__main__':
 
 #     # Main loop to accept new jobs
 #     while True:
-#         # Here, you'll need a way to receive or generate new jobs. This is just a placeholder.
+#         # Receive or generate new jobs. Placeholder.
 #         new_job = get_new_job()  # Implement this function based on your job source
 
 #         if new_job:
-#             # Assign the job to a printer (simple round-robin assignment for demonstration)
-#             selected_printer = available_printers[job_count % len(available_printers)]
+#             # Assign the job to a printer.  Add check to find which printer to select. Right just takes the first, this is a Placeholder.
+#             selected_printer = available_printers[0]
 #             selected_printer.queue.put(new_job)
