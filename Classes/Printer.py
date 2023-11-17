@@ -16,6 +16,7 @@ class Printer:
     # Method to connect to the printer via serial port.
     def connect(self):
         if not self.virtual:
+            print("In connect")
             self.ser = serial.Serial(self.serial_port, 115200, timeout=1)
         else:
             print("Connected to virtual printer.")
@@ -27,7 +28,9 @@ class Printer:
 
     # Method to reset the printer. Sends the printer to home and resets the extruder.
     def reset(self):
+        print("In Reset")
         self.sendGcode("G28")
+        print("Return Home")
         self.sendGcode("G92 E0")
 
     # Method to send gcode commands to the printer.
@@ -45,6 +48,7 @@ class Printer:
 
     # Method to print a job.
     def printJob(self, job):
+        print("In Print Job")
         for line in job.gcode_lines:
             self.sendGcode(line)
 

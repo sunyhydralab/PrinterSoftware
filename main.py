@@ -36,7 +36,7 @@ if __name__ == '__main__':
     selected_printer = available_printers[0]
     print("Selected Port: ", selected_printer)
     selected_printer.connect()  # Connect to the printer
-    selected_printer.reset()    # Reset the printer
+    # selected_printer.reset()    # Reset the printer
     selected_printer.printJob(test_job)  # Send the job to the printer
     selected_printer.disconnect()        # Disconnect from the printer
 
