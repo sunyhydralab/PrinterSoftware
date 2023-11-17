@@ -66,12 +66,14 @@ class Printer:
 
         # Get a list of all the connected serial ports.
         ports = serial.tools.list_ports.comports()
+
+        # Keep a list of supported printers.
+        supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
         for port in ports:
-            # Keep a list of supported printers.
-            supportedPrinters = ["Original Prusa i3 MK3", "Makerbot"]
+            
             # Check if the printer is supported and if true add it to the list.
             if port.description in supportedPrinters:
-                printerList.append(port)
+                printerList.append(Printer(port.device))
             # Print out the list of supported printers.
             print(f"Port: {port.device}, Descp: {port.description}")
         # Return the list of supported printers.
