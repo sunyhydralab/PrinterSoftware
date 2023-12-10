@@ -7,8 +7,6 @@ Welcome to the 3D Printer Software project! This software is designed to power a
 - **Multi-Printer Management:** Control and monitor multiple 3D printers simultaneously.
 - **User-Friendly Interface:** Easy-to-navigate interface for managing printing jobs.
 - **Real-Time Monitoring:** Track the progress of your prints in real-time.
-- **Advanced Slicing Algorithms:** Optimize your prints for speed and material usage.
-- **Customizable Settings:** Tailor the software to meet the specific needs of your printers and projects.
 
 ## Installation
 1. Ensure you have Python installed on your system.
