@@ -14,7 +14,7 @@ class Printer:
         self.filament = filament
         self.virtual = virtual
         self.queue = deque()
-        self.thread = threading.Thread(target=self.printQueue, daemon=True).start()
+        self.thread = threading.Thread(target=self.printQueue).start()
 
     # Method to connect to the printer via serial port.
     def connect(self):
@@ -58,11 +58,13 @@ class Printer:
     #Method to add a job to the queue.
     def addJob(self, job):
         self.queue.append(job)
+        print("Job added to queue")
         
     # Method to print the queue.
     # We should add a way to delay the next print job until 
     # the print has been cleared from the printer.
     def printQueue(self):
+        print("In Print Queue")
         while True:
             try:
                 # Check if the queue is empty
@@ -74,6 +76,7 @@ class Printer:
                 job = self.queue.popleft()
                 # If job returns a new job, run the print
                 if job:
+                    print("Printing Job")
                     self.connect()
                     self.reset()
                     self.printJob(job)
