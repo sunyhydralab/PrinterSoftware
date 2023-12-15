@@ -9,7 +9,8 @@ from Classes.Printer import Printer
 
 if __name__ == '__main__':
     # Get the list of available printers. Pass 0 for a list of real connected printers.  Pass 1 for a list of 5 virtual printers.
-    serial_printers = int(input("Enter 0 for real printers or 1 for virtual printers: "))
+    # serial_printers = int(input("Enter 0 for real printers or 1 for virtual printers: "))
+    serial_printers = 1
 
     # Setup for real or virtual printers
     if serial_printers == 0:

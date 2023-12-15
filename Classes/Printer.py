@@ -1,7 +1,9 @@
 import serial
 from serial.tools import list_ports
 import time
-from Classes.Queue import Queue
+from collections import deque
+# from Classes.Queue import Queue
+import threading
 
 # Class for each printer.
 class Printer:
@@ -11,7 +13,8 @@ class Printer:
         self.ser = None
         self.filament = filament
         self.virtual = virtual
-        self.queue = Queue()
+        self.queue = deque()
+        self.thread = threading.Thread(target=self.printQueue, daemon=True).start()
 
     # Method to connect to the printer via serial port.
     def connect(self):
@@ -51,13 +54,41 @@ class Printer:
         print("In Print Job")
         for line in job.gcode_lines:
             self.sendGcode(line)
+    
+    #Method to add a job to the queue.
+    def addJob(self, job):
+        self.queue.append(job)
+        
+    # Method to print the queue.
+    # We should add a way to delay the next print job until 
+    # the print has been cleared from the printer.
+    def printQueue(self):
+        while True:
+            try:
+                # Check if the queue is empty
+                if not self.queue:
+                    # Wait for a second to check again.
+                    time.sleep(1)
+                    continue
+                # Get the next job from the left of the queue
+                job = self.queue.popleft()
+                # If job returns a new job, run the print
+                if job:
+                    self.connect()
+                    self.reset()
+                    self.printJob(job)
+                    self.disconnect()
+            except Exception as e:
+                print(f"Error with printer {self.serial_port}: {e}")
 
-    # Method to get a list of all the connected serial ports. Static Method that can be called without an instance.
+    # Method to get a list of all the connected serial ports. 
+    # Static Method that can be called without an instance.
     @staticmethod
     def getSupportedPrinters(virtual=False):
 
         # Make a list of the supported printers.
-        # Save the port and description to list. With key value pairs of port and description.
+        # Save the port and description to list. 
+        # With key value pairs of port and description.
         printerList = []
 
         if virtual:
